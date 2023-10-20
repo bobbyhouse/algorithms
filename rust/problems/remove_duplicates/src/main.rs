@@ -1,28 +1,22 @@
-use std::collections::HashMap;
-
 fn remove_duplicates(nums: &mut Vec<i32>) -> i32{
-    let mut keys: HashMap<i32, bool> = HashMap::new();
-    let mut found_count: usize = 0;
-    let mut i: usize = 0;
+    if nums.len() < 2 {
+        return nums.len() as i32;
+    }
+
+    let mut unique: usize = 1;
+    let mut current: usize = 1;
 
     loop {
-        if (i == nums.len() - found_count) {
+        if current == nums.len() {
             break;
         }
-
-        let found = keys.get(&nums[i]);
-        match found {
-            Some(_) => {
-                nums[i] = nums[array_end - 1];
-                array_end -= 1;
-            },
-            None => {
-                keys.insert(nums[i], true);
-                i += 1;
-            }
+        if nums[current] != nums[current - 1] {
+            nums[unique] = nums[current];
+            unique += 1;
         }
+        current += 1;
     }
-    return array_end as i32;
+    return unique.try_into().unwrap();
 }
 
 fn main() {
