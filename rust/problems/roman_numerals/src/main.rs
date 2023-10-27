@@ -6,6 +6,8 @@ fn main() {
     });
 }
 
+// Could this have been written with peek instead of needing to store
+// the previous element in a tuple?
 fn roman_numeral_to_integer(roman_numeral: &String) -> i32 {
     let result = roman_numeral.chars().rev().fold((0, 0), |acc, next| {
         let (last, sum) = acc;
